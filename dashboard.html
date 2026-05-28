@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Dashboard • Yoo Trading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-200">
+
+  <!-- NAVBAR -->
+  <nav class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold text-emerald-400">Yoo Trading</div>
+      <div class="flex items-center gap-6">
+        <span id="userEmail" class="text-slate-400"></span>
+        <button onclick="logout()" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg font-semibold transition">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <div class="flex">
+    <div class="w-64 bg-slate-900 border-r border-slate-800 min-h-screen">
+      <div class="p-6 space-y-4">
+        <a href="#dashboard" class="block px-4 py-3 rounded-lg bg-emerald-500/20 text-emerald-400 font-semibold">
+          <i class="fas fa-chart-line mr-3"></i>Dashboard
+        </a>
+        <a href="#trading" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fas fa-exchange-alt mr-3"></i>Trading Terminal
+        </a>
+        <a href="#signals" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fas fa-bell mr-3"></i>Signals
+        </a>
+        <a href="#education" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fas fa-book mr-3"></i>Education
+        </a>
+        <a href="#account" class="block px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fas fa-user mr-3"></i>Account Settings
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1">
+      <!-- DASHBOARD SECTION -->
+      <section id="dashboard" class="p-8">
+        <h1 class="text-4xl font-bold mb-8">Welcome to Your Trading Dashboard</h1>
+        
+        <!-- ACCOUNT STATS -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+            <div class="text-slate-400 text-sm mb-2">Account Balance</div>
+            <div class="text-3xl font-bold text-emerald-400">$10,000.00</div>
+            <div class="text-xs text-slate-500 mt-2">Demo Account</div>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+            <div class="text-slate-400 text-sm mb-2">Open Positions</div>
+            <div class="text-3xl font-bold">0</div>
+            <div class="text-xs text-slate-500 mt-2">Active Trades</div>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+            <div class="text-slate-400 text-sm mb-2">Today's P/L</div>
+            <div class="text-3xl font-bold text-gray-400">$0.00</div>
+            <div class="text-xs text-slate-500 mt-2">Profit / Loss</div>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+            <div class="text-slate-400 text-sm mb-2">Win Rate</div>
+            <div class="text-3xl font-bold">0%</div>
+            <div class="text-xs text-slate-500 mt-2">Success Rate</div>
+          </div>
+        </div>
+
+        <!-- MARKET OVERVIEW -->
+        <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 mb-8">
+          <h2 class="text-2xl font-bold mb-6">Market Overview</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-800 p-4 rounded-lg">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-semibold">EUR/USD</span>
+                <span class="text-emerald-400">+0.45%</span>
+              </div>
+              <div class="text-2xl font-bold">1.0850</div>
+              <div class="text-xs text-slate-400 mt-1">Bid: 1.0849 | Ask: 1.0850</div>
+            </div>
+            <div class="bg-slate-800 p-4 rounded-lg">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-semibold">GBP/USD</span>
+                <span class="text-emerald-400">+0.32%</span>
+              </div>
+              <div class="text-2xl font-bold">1.2750</div>
+              <div class="text-xs text-slate-400 mt-1">Bid: 1.2749 | Ask: 1.2750</div>
+            </div>
+            <div class="bg-slate-800 p-4 rounded-lg">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-semibold">BTC/USD</span>
+                <span class="text-red-400">-1.25%</span>
+              </div>
+              <div class="text-2xl font-bold">45,230</div>
+              <div class="text-xs text-slate-400 mt-1">Bid: 45,220 | Ask: 45,240</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT TRADES -->
+        <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+          <h2 class="text-2xl font-bold mb-6">Recent Trades</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="border-b border-slate-700">
+                <tr>
+                  <th class="text-left py-3 px-4">Instrument</th>
+                  <th class="text-left py-3 px-4">Type</th>
+                  <th class="text-left py-3 px-4">Entry Price</th>
+                  <th class="text-left py-3 px-4">Current Price</th>
+                  <th class="text-left py-3 px-4">P/L</th>
+                  <th class="text-left py-3 px-4">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-slate-800 hover:bg-slate-800 transition">
+                  <td class="py-4 px-4">EUR/USD</td>
+                  <td class="py-4 px-4"><span class="text-emerald-400">BUY</span></td>
+                  <td class="py-4 px-4">1.0800</td>
+                  <td class="py-4 px-4">1.0850</td>
+                  <td class="py-4 px-4"><span class="text-emerald-400">+$50.00</span></td>
+                  <td class="py-4 px-4"><span class="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded text-xs">Open</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center py-8 text-slate-500">
+              <p>No closed trades yet. Start trading to see your history here.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRADING SECTION -->
+      <section id="trading" class="p-8 hidden">
+        <h1 class="text-4xl font-bold mb-8">Trading Terminal</h1>
+        <div class="bg-slate-900 p-8 rounded-xl border border-slate-800">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h2 class="text-2xl font-bold mb-6">Open a Position</h2>
+              <form class="space-y-4">
+                <div>
+                  <label class="block text-sm mb-2">Instrument</label>
+                  <select class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700 focus:border-emerald-400">
+                    <option>EUR/USD</option>
+                    <option>GBP/USD</option>
+                    <option>BTC/USD</option>
+                    <option>AAPL Stock</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm mb-2">Type</label>
+                    <select class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700">
+                      <option>BUY</option>
+                      <option>SELL</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm mb-2">Volume</label>
+                    <input type="number" value="1" class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700" />
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm mb-2">Take Profit</label>
+                    <input type="number" placeholder="1.0900" class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700" />
+                  </div>
+                  <div>
+                    <label class="block text-sm mb-2">Stop Loss</label>
+                    <input type="number" placeholder="1.0800" class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700" />
+                  </div>
+                </div>
+                <button type="button" class="w-full bg-emerald-500 hover:bg-emerald-600 py-3 rounded font-semibold transition">
+                  Open Trade
+                </button>
+              </form>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold mb-6">Quick Info</h2>
+              <div class="space-y-4">
+                <div class="bg-slate-800 p-4 rounded">
+                  <div class="text-sm text-slate-400">Available Margin</div>
+                  <div class="text-2xl font-bold text-emerald-400">$10,000.00</div>
+                </div>
+                <div class="bg-slate-800 p-4 rounded">
+                  <div class="text-sm text-slate-400">Used Margin</div>
+                  <div class="text-2xl font-bold">$0.00</div>
+                </div>
+                <div class="bg-slate-800 p-4 rounded">
+                  <div class="text-sm text-slate-400">Margin Level</div>
+                  <div class="text-2xl font-bold text-emerald-400">N/A</div>
+                </div>
+                <div class="bg-blue-900/30 p-4 rounded border border-blue-700 text-sm">
+                  <i class="fas fa-info-circle mr-2"></i>
+                  This is a demo account. No real money is at risk.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIGNALS SECTION -->
+      <section id="signals" class="p-8 hidden">
+        <h1 class="text-4xl font-bold mb-8">Trading Signals</h1>
+        <div class="space-y-6">
+          <div class="bg-slate-900 p-6 rounded-xl border-l-4 border-emerald-400">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-xl font-bold mb-2">EUR/USD - STRONG BUY</h3>
+                <p class="text-slate-400 mb-4">Price approaching strong support at 1.0800. RSI oversold at 28.</p>
+                <div class="flex gap-4 text-sm">
+                  <div><span class="text-slate-400">Entry:</span> <span class="font-semibold">1.0815</span></div>
+                  <div><span class="text-slate-400">TP:</span> <span class="text-emerald-400 font-semibold">1.0900</span></div>
+                  <div><span class="text-slate-400">SL:</span> <span class="text-red-400 font-semibold">1.0780</span></div>
+                  <div><span class="text-slate-400">Win Prob:</span> <span class="font-semibold">73%</span></div>
+                </div>
+              </div>
+              <span class="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded">Active</span>
+            </div>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border-l-4 border-blue-400">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-xl font-bold mb-2">BTC/USD - SELL</h3>
+                <p class="text-slate-400 mb-4">Resistance at 45,500 confirmed. Bearish divergence on 4H chart.</p>
+                <div class="flex gap-4 text-sm">
+                  <div><span class="text-slate-400">Entry:</span> <span class="font-semibold">45,450</span></div>
+                  <div><span class="text-slate-400">TP:</span> <span class="text-emerald-400 font-semibold">44,800</span></div>
+                  <div><span class="text-slate-400">SL:</span> <span class="text-red-400 font-semibold">45,800</span></div>
+                  <div><span class="text-slate-400">Win Prob:</span> <span class="font-semibold">68%</span></div>
+                </div>
+              </div>
+              <span class="text-xs bg-blue-500/20 text-blue-400 px-3 py-1 rounded">Pending</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION SECTION -->
+      <section id="education" class="p-8 hidden">
+        <h1 class="text-4xl font-bold mb-8">Trading Education</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 hover:border-emerald-400 transition cursor-pointer">
+            <h3 class="text-xl font-bold mb-3">📖 Beginner's Guide to Forex</h3>
+            <p class="text-slate-400 mb-4">Learn the fundamentals of forex trading, market structure, and how to read currency pairs.</p>
+            <button class="text-emerald-400 hover:text-emerald-300 font-semibold">Start Course →</button>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 hover:border-emerald-400 transition cursor-pointer">
+            <h3 class="text-xl font-bold mb-3">📊 Technical Analysis Mastery</h3>
+            <p class="text-slate-400 mb-4">Master support/resistance, chart patterns, indicators, and price action strategies.</p>
+            <button class="text-emerald-400 hover:text-emerald-300 font-semibold">Start Course →</button>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 hover:border-emerald-400 transition cursor-pointer">
+            <h3 class="text-xl font-bold mb-3">💰 Risk Management</h3>
+            <p class="text-slate-400 mb-4">Learn position sizing, stop losses, and how to protect your capital.</p>
+            <button class="text-emerald-400 hover:text-emerald-300 font-semibold">Start Course →</button>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 hover:border-emerald-400 transition cursor-pointer">
+            <h3 class="text-xl font-bold mb-3">🎯 Trading Psychology</h3>
+            <p class="text-slate-400 mb-4">Overcome emotions, build discipline, and develop a winning trading mindset.</p>
+            <button class="text-emerald-400 hover:text-emerald-300 font-semibold">Start Course →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACCOUNT SECTION -->
+      <section id="account" class="p-8 hidden">
+        <h1 class="text-4xl font-bold mb-8">Account Settings</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+            <h2 class="text-2xl font-bold mb-6">Profile Information</h2>
+            <form class="space-y-4">
+              <div>
+                <label class="block text-sm mb-2">Email Address</label>
+                <input type="email" id="settingsEmail" class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700" readonly />
+              </div>
+              <div>
+                <label class="block text-sm mb-2">Full Name</label>
+                <input type="text" placeholder="Your Name" class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700" />
+              </div>
+              <div>
+                <label class="block text-sm mb-2">Phone Number</label>
+                <input type="tel" placeholder="Your Phone" class="w-full bg-slate-800 px-4 py-2 rounded border border-slate-700" />
+              </div>
+              <button type="button" class="w-full bg-emerald-500 hover:bg-emerald-600 py-2 rounded font-semibold transition">Save Changes</button>
+            </form>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+            <h2 class="text-2xl font-bold mb-6">Security</h2>
+            <div class="space-y-4">
+              <button class="w-full border border-slate-700 hover:border-emerald-400 py-2 rounded font-semibold transition">Change Password</button>
+              <button class="w-full border border-slate-700 hover:border-emerald-400 py-2 rounded font-semibold transition">Enable 2FA</button>
+              <button class="w-full border border-slate-700 hover:border-emerald-400 py-2 rounded font-semibold transition">View Login History</button>
+              <div class="bg-slate-800 p-4 rounded mt-4 text-sm">
+                <div class="text-slate-400 mb-2">Account Status: <span class="text-emerald-400 font-semibold">Verified</span></div>
+                <div class="text-slate-400">Last Login: <span class="font-semibold">Today at 2:30 PM</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Load user email on page load
+    window.addEventListener('load', () => {
+      const userData = JSON.parse(localStorage.getItem('userSignup'));
+      if (userData) {
+        document.getElementById('userEmail').textContent = userData.email;
+        document.getElementById('settingsEmail').value = userData.email;
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('href');
+        document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+        document.querySelector(target).classList.remove('hidden');
+        document.querySelectorAll('a[href^="#"]').forEach(l => l.classList.remove('bg-emerald-500/20', 'text-emerald-400'));
+        link.classList.add('bg-emerald-500/20', 'text-emerald-400');
+      });
+    });
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem('userSignup');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
